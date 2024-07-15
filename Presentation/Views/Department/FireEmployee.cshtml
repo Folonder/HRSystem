@@ -1,0 +1,24 @@
+﻿@model Presentation.Models.Employee.EmployeeFireModel
+
+@{
+    ViewData["Title"] = "Уволить сотрудника";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="FireEmployee">
+    <div class="form-group">
+        <label asp-for="EmployeeId" class="control-label">Сотрудник</label>
+        <select asp-for="EmployeeId" asp-items="@ViewBag.Employees" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="FireDate"  class="control-label">Дата увольнения</label>
+        <input asp-for="FireDate" type="date" class="form-control" />
+    </div>
+    <p></p>
+    <div class="form-group">
+        <input type="hidden" asp-for="DepartmentId" />
+        <input type="submit" value="Уволить" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Назад к списку</a>
+    </div>
+</form>

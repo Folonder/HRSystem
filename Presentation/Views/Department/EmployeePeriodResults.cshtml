@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Domain.Entities.EmployeeHistory>
+
+<h2>Сотрудники в подразделении за указанный период</h2>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Дата наема</th>
+            <th>Дата увольнения</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var employeeHistory in Model)
+        {
+            <tr>
+                <td>@($"{employeeHistory.Employee.Name}")</td>
+                <td>@employeeHistory.HireDate.ToShortDateString()</td>
+                <td>@(employeeHistory.FireDate.HasValue ? employeeHistory.FireDate.Value.ToShortDateString() : "-")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Сотрудники за даннный период не найдены.</p>
+}

@@ -1,0 +1,27 @@
+﻿@model Presentation.Models.Department.DepartmentCreateModel
+
+@{
+    ViewData["Title"] = "Создать подразделение";
+}
+
+<h1>Создать подразделение</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name">Название</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ParentDepartmentId" class="control-label">Родительское подразделение</label>
+        <select asp-for="ParentDepartmentId" asp-items="@(ViewBag.Departments)" class="form-control">
+            <option value="">-- Выберите родительское подразделение --</option>
+        </select>
+        <span asp-validation-for="ParentDepartmentId" class="text-danger"></span>
+    </div>
+    <p></p>
+    <div class="form-group">
+        <input type="submit" value="Создать" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Назад к списку</a>
+    </div>
+</form>

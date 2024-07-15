@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Выберите дату";
+}
+
+<h1>Выберите дату</h1>
+
+<form asp-action="DepartmentTreeOnDate" method="post">
+    <div class="form-group">
+        <label for="date">Дата</label>
+        <input type="date" id="date" name="date" class="form-control" required />
+    </div>
+    <p></p>
+    <div class="form-group">
+        <input type="submit" value="Показать структуру подразделений" class="btn btn-primary" />
+    </div>
+</form>

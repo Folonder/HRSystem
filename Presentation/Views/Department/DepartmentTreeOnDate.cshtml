@@ -1,0 +1,23 @@
+﻿@model List<Presentation.Models.Department.DepartmentTreeViewModel>
+
+@{
+    ViewData["Title"] = "Структура подразделений";
+}
+
+<h1>Структура подразделений</h1>
+
+@if (Model.Count > 0)
+{
+    <ul>
+        @foreach (var department in Model)
+        {
+            <li>
+                @department.Name
+                @if (department.SubDepartments.Any())
+                {
+                    @await Html.PartialAsync("_RenderSubDepartments", department.SubDepartments)
+                }
+            </li>
+        }
+    </ul>
+}

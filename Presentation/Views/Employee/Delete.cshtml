@@ -1,0 +1,23 @@
+﻿@model Domain.Entities.Employee
+
+<h2>Удалить сотрудника</h2>
+
+<h3>Вы уверены, что хотите удалить сотрудника и всю его историю?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            ФИО
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+    <div class="form-group">
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Назад к списку</a>
+    </form>
+    </div>
+</div>

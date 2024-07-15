@@ -1,0 +1,14 @@
+﻿@model List<Presentation.Models.Department.DepartmentTreeViewModel>
+
+<ul>
+    @foreach (var department in Model)
+    {
+        <li>
+            @department.Name
+            @if (department.SubDepartments.Any())
+            {
+                @await Html.PartialAsync("_RenderSubDepartments", department.SubDepartments)
+            }
+        </li>
+    }
+</ul>

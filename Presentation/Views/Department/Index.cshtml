@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Domain.Entities.Department>
+
+@{
+    ViewData["Title"] = "Департаменты";
+}
+
+@{
+    bool showOpenOnly = ViewBag.ShowOpenOnly ?? false;
+}
+
+<h2>Подразделения</h2>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Создать</a>
+    <a asp-action="SelectDateOfDepartment" class="btn btn-primary">Структура подразделений</a>
+</p>
+
+<div>
+    @if (showOpenOnly)
+    {
+        <a href="@Url.Action("Index", new { showOpenOnly = false })">Показать все департаменты</a>
+    }
+    else
+    {
+        <a href="@Url.Action("Index", new { showOpenOnly = true })">Показать только открытые департаменты</a>
+    }
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Подразделение
+        </th>
+        <th>
+            Родительское подразделение
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParentDepartment!.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Подробности</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a> |
+                <a asp-action="HireEmployee" asp-route-departmentId="@item.Id">Нанять сотрудника</a> |
+                <a asp-action="FireEmployee" asp-route-departmentId="@item.Id">Уволить сотрудника</a> |
+                <a asp-action="SelectPeriodOfDepartmentEmployees" asp-route-departmentId="@item.Id">Сотрудники</a> |
+                <a asp-action="Close" asp-route-id="@item.Id">Закрыть подразделение</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
